@@ -23,8 +23,8 @@ def callback(packet):
             print(packet)
             send_discord_message(webhook, "DCRDGTE", f"{packet['from']}:{packet['message_text'].replace('DCRDGTE','')}")
 
-send_discord_message(webhook, "DCRDGTE", f"Ready to receive!")
-AIS = aprslib.IS("N0CALL", "-1", "rotate.aprs2.net")
+AIS = aprslib.IS("N0CALL", "-1", "rotate.aprs.net", "14580")
+AIS.set_filter("t/m")
 AIS.connect()
 # by default `raw` is False, then each line is ran through aprslib.parse()
 AIS.consumer(callback, raw=False)
