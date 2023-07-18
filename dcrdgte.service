@@ -1,0 +1,11 @@
+[Unit]
+Description=DCRDGTE Service
+After=multi-user.target
+[Service]
+User=root
+WorkingDirectory=/root/DCRDGTE
+ExecStart=/root/DCRDGTE/run.sh
+Restart=always
+RestartSec=5
+[Install]
+WantedBy=multi-user.target
