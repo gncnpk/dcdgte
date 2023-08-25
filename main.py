@@ -32,7 +32,8 @@ def callback(packet):
                 temp_AIS = aprslib.IS(config['dcdgte']['ACK_CALLSIGN'], host="rotate.aprs.net", port="14580", passwd=config['dcdgte']['ACK_PASSCODE'])
                 temp_AIS.connect(blocking=True)
                 print("Responding with ACK")
-                ack_packet = f"DCDGTE>DCDGTE::{packet['from']}  :ack{packet['msgNo']}"
+                dest_portion = packet['from']
+                ack_packet = f"DCDGTE>DCDGTE::{dest_portion.ljust(9)}:ack{packet['msgNo']}"
                 print(ack_packet)
                 temp_AIS.sendall(ack_packet)
                 print("Closing temporary connection")
